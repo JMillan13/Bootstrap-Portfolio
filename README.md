@@ -1,7 +1,10 @@
 # Bootstrap-Portfolio
 
-About my Portfolio: I had to incorporate all of my projects into my Portfolio.
+I had to incorporate all of my projects into my Portfolio.
 Instructions:
+
+
+
 Portfolio Contact
 Portfolio Gallery
 IMPORTANT Your site's layout must match the designs in these screenshots. You'll find the specs for these designs below.
