@@ -8,6 +8,15 @@
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/6.5.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#reserved-urls -->
+
+<!-- Initialize Firebase -->
+
+
 </head>
 
 <body>
@@ -61,6 +70,72 @@
                 Copyright &copy;
               </div>
               </footer>
+
+               <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- LINK TO FIREBASE GOES HERE -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+  <!-- Script -->
+  <script>
+    // START CODING BELOW!!
+
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA5eYKsB8T2q6rMGdKSvac6eQsWTzsZEjE",
+      authDomain: "fir-recent-user.firebaseapp.com",
+      databaseURL: "https://fir-recent-user.firebaseio.com",
+      storageBucket: "fir-recent-user.appspot.com"
+    };
+
+    firebase.initializeApp(config);
+
+    // Create a variable to reference the database
+    var database = firebase.database();
+
+    // Initial Values
+    var name = "";
+    var email = "";
+
+    // Capture Button Click
+    $("#add-user").on("click", function(event) {
+      // Don't refresh the page!
+      event.preventDefault();
+
+      // YOUR TASK!!!
+      // Code in the logic for storing and retrieving the most recent user.
+      // Don't forget to provide initial data to your Firebase database.
+      name = $("#name-input").val().trim();
+      email = $("#email-input").val().trim();
+
+      database.ref().set({
+        name: name,
+        email: email
+
+      });
+
+    });
+
+    // Firebase watcher + initial loader HINT: .on("value")
+    database.ref().on("value", function(snapshot) {
+
+      // Log everything that's coming out of snapshot
+      console.log(snapshot.val());
+      console.log(snapshot.val().name);
+      console.log(snapshot.val().email);
+
+      // Change the HTML to reflect
+      $("#name-display").text(snapshot.val().name);
+      $("#email-display").text(snapshot.val().email);
+
+
+      // Handle the errors
+    }, function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    });
+
+  </script>
 </body>
 
 </html>
